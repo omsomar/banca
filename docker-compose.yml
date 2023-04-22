@@ -21,10 +21,10 @@ services:
     image: banca-api
     ports:
       - '8090:8089'
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/banca
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/banca
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
     build:
       context: .
       dockerfile: Dockerfile

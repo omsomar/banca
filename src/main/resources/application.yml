@@ -4,7 +4,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driverClassName: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/banca
+    url: jdbc:mariadb://10.5.0.6:3306/banca
     username: root
     password: root
     hikari:
@@ -16,7 +16,7 @@ spring:
       ddl-auto: update
     show-sql: true
     generate-ddl: true
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
+    database-platform: org.hibernate.dialect.MariaDBDialect
 springdoc:
   enable-native-support: true
   swagger-ui:

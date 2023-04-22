@@ -8,6 +8,19 @@
 	"item": [
 		{
 			"name": "Crear usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseBody = pm.response.json();\r",
+							"var idCustomer = responseBody.customerId;\r",
+							"pm.environment.set(\"idCustomer\", idCustomer);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -28,6 +41,131 @@
 					"port": "8089",
 					"path": [
 						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear cuenta de usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountNumber\": \"585545\",\r\n  \"accountType\": \"CURRENT\",\r\n  \"initialBalance\": 1000,\r\n  \"customerId\": \"{{idCustomer}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8089/account",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch cuenta de usuario",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\":\"55458\",\r\n    \"account_type\":\"SAVING\",\r\n    \"initial_balance\":10000,\r\n    \"customer_id\": \"29d4e2fb-8c4a-4ae5-9afd-bacdc7a60e01\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8089/account/29d4e2fb-8c4a-4ae5-9afd-bacdc7a60e01",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"account",
+						"29d4e2fb-8c4a-4ae5-9afd-bacdc7a60e01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hacer una transaccion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"account_number\": \"29d4e2fb-8c4a-4ae5-9afd-bacdc7a60e01\",\r\n    \"value\": 250,\r\n    \"transaction_type\": \"DEBIT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8089/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reporte transacciones",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8089/transaction?fecha_inicio=2023-04-22&fecha_fin=2023-04-23&identificacion=12345",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "fecha_inicio",
+							"value": "2023-04-22"
+						},
+						{
+							"key": "fecha_fin",
+							"value": "2023-04-23"
+						},
+						{
+							"key": "identificacion",
+							"value": "12345"
+						}
 					]
 				}
 			},
