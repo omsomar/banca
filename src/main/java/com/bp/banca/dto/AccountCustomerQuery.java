@@ -1,0 +1,15 @@
+package com.bp.banca.dto;
+
+
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+@AllArgsConstructor
+public class AccountCustomerQuery {
+    @NotNull
+    private String identification;
+}

@@ -1,0 +1,23 @@
+server:
+  port: 8089
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/banca
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 2000
+      maximum-pool-size: 20
+  jpa:
+    #database: mysql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MariaDB103Dialect
+springdoc:
+  enable-native-support: true
+  swagger-ui:
+    path: /swagger-ui
