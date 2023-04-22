@@ -1,4 +1,4 @@
-version: '5'
+version: '3.3'
 
 services:
   banca-db:
@@ -13,14 +13,11 @@ services:
     ports:
       - "3306:3306"
     restart: always
-    networks:
-      api_network:
-        ipv4_address: 10.5.0.6
   banca-api:
     container_name: bancaApi
     image: banca-api
     ports:
-      - '8090:8089'
+      - 9091:9091
 #    environment:
 #      SPRING_DATASOURCE_URL: jdbc:mariadb://localhost:3306/banca
 #      SPRING_DATASOURCE_USERNAME: root
@@ -28,15 +25,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    networks:
-      api_network:
-        ipv4_address: 10.5.0.6
 volumes:
   data: {}
-networks:
-  api_network:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
